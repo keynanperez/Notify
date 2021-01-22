@@ -11,7 +11,7 @@ import {
 import { FAB, Portal, Dialog,Button ,Card,IconButton,Icon,TextInput} from 'react-native-paper';
 //import { TextInput } from "react-native-gesture-handler";
 import { Image } from "react-native";
-/* import CategoryClass from './Classes/NoteClass'; */
+ import CategoryClass from '../Calsses/CategoryClass'; 
 import { Avatar, Badge, withBadge } from 'react-native-elements'
 export default class Home extends React.Component {
   constructor(props) {
@@ -80,39 +80,43 @@ export default class Home extends React.Component {
              
 
 
-<Card onPress={() => {
+<Card style={styles.todoListContainer} onPress={() => {
                     this.props.navigation.push("Category", { category: value });
                   }}>
-            <Card style={styles.todoListContainer}>
-                <Card.Title title={value}
-                   />                  
-                     <IconButton icon="delete" size={40} onPress={() => this.removeCategory(key)} />            
+             
+                <Card.Title title={value} 
+                right={(props) => {
+                        return (
+                            <View style={styles.titleButtonsContainer}>
+                            <IconButton icon="delete" size={40} onPress={() => this.removeCategory(key)} /> 
+                            </View>              
+                        
+      
+                            );
+                    }} /> 
+
+                
+                
             </Card>
-        </Card>
             ))}
            
-          
-            <TextInput
-  mode='outlined'
-  label="Label Name"
-  placeholder="Enter placeholder"
-  left={
-    <TextInput.Icon
-      name={<Icon name="info" color="#ff0000" />} // where <Icon /> is any component from vector-icons or anything else
-      onPress={() => {}}
-    />
-  }
-/>
-<FAB
-               
-                icon="plus"
-                onPress={this.addCategory}
-            />
+         
          
         
-         
-        </ScrollView>
-     
+        <ScrollView style={{ position: 'absolute', top: 650 ,width:'100%'}}>
+        <Card>
+            <TextInput style={{width:'100%',padding:10}}
+  mode='outlined'
+  label="Category Title"
+  onChangeText={this.textChanged}
+  placeholder="Category Title"/>
+   <Card.Actions>
+
+             <Button style={{width:'50%',alignSelf: "center"}} onPress={this.addCategory}>Add New Category</Button>
+            </Card.Actions>
+         </Card>
+         </ScrollView>
+         </ScrollView>
     );
   }
 }
@@ -132,11 +136,13 @@ const styles = StyleSheet.create({
     top: 600,
 },
 todoListContainer: {
-    justifyContent: 'flex-end',
+   
     width:'100%',
 borderRadius: 5,
+position:'relative',
 padding: 10,
-height: 150,
+height: 100,
+margin:10,
 
 
 },
@@ -144,7 +150,7 @@ divider: {
     marginVertical: 15
 },
 titleButtonsContainer: {
-    marginTop:50,
+   
     flexDirection: "column"
 },
 completedText: {

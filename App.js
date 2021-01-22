@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import Home from './src/Screens/Home';
+import Category from './src/Screens/Category';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import Note from './src/Screens/Note';
+/*
+import CameraGo from './Pages/CameraGo';
+ */
+
+
+class App extends React.Component {
+  render() {
+    return (
+      <AppNavigator />
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+
+const AppNavigator = createStackNavigator(
+  {
+    Home: { screen: Home },
+     Category: { screen: Category },
+    Note: { screen: Note },
+   /* CameraGo: { screen: CameraGo } */
   },
-});
+  {
+    initialRouteName: 'Home',
+    
+
+  }
+);
+
+export default createAppContainer(AppNavigator);
