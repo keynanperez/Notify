@@ -18,7 +18,8 @@ export default class Note extends React.Component {
             desc: "",
             id: this.props.navigation.getParam('category', "no category"),
             noteArr: [],
-            showCamera:false
+            showCamera:false,
+            noteCount:0
         }
         
     }
@@ -59,8 +60,11 @@ export default class Note extends React.Component {
         tempArr.push(newNote);
         this.storeData(tempArr);
         this.setState({ noteArr: tempArr });
+        alert(this.state.noteCount);
         alert("Your Note Has Been Saved!")
-        this.props.navigation.navigate('Home');         
+        this.props.navigation.navigate('Home');  
+        noteCount++;       
+        alert(noteCount);
     }
     }
 

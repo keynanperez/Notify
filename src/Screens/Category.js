@@ -56,13 +56,14 @@ export default class Category extends React.Component {
   render() {
     return (
       <View >
-        <Text style={{ color: "black", fontSize: 30, marginTop: 20 }}>
+        <Text style={{  fontSize: 20, marginTop: 20 ,textAlign:'center'}}>
           {this.state.cat}
         </Text>
         
-        <ScrollView>
+        <ScrollView style={{  fontSize: 20, marginTop: 10 ,textAlign:'center'}}>
         {this.state.noteArr.map(
             (value, key) =>
+            
               value.id === this.state.cat && (
         <Card style={styles.container}>
         <Card.Cover style={{height: 150 }} source={{ uri: value.image }} />
@@ -106,7 +107,7 @@ export default class Category extends React.Component {
             position: 'absolute',
             margin: 30,
             right: 0,
-            top: 600,
+            top: 500,
         },
         todoListContainer: {
            

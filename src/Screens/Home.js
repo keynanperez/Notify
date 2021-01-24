@@ -9,10 +9,11 @@ import {
   ScrollView
 } from "react-native";
 import { FAB, Portal, Dialog,Button ,Card,IconButton,Icon,TextInput} from 'react-native-paper';
-//import { TextInput } from "react-native-gesture-handler";
 import { Image } from "react-native";
  import CategoryClass from '../Calsses/CategoryClass'; 
 import { Avatar, Badge, withBadge } from 'react-native-elements'
+import Note from './NoteSCnew';
+import Category from './Category';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -40,7 +41,7 @@ export default class Home extends React.Component {
   addCategory = () => {
     if(this.state.newCategory=="")
     {
-      alert("Please insert category name!")
+      alert("Error: Category name is empty")
     }
     else
     {
@@ -57,14 +58,22 @@ export default class Home extends React.Component {
 
   removeCategory = data => {
     let tempArr = this.state.categoriesArr;
+    
     for (var i = 0; i < this.state.categoriesArr.length; i++) {
       if (i == data) {
         tempArr.splice(i, 1);
       }
     }
+   
     this.storeData(tempArr);
     this.setState({ noteArr: tempArr });
   };
+  /* notesCategory = data => {
+    let tempArr = this.props.;
+    alert(tempArr);
+    
+    
+  }; */
 //**************************************************************************** */
 //**************************************************************************** */
 //**************************************************************************** רנדר */
@@ -89,6 +98,7 @@ export default class Home extends React.Component {
                         return (
                             <View style={styles.titleButtonsContainer}>
                             <IconButton icon="delete" size={40} onPress={() => this.removeCategory(key)} /> 
+                     {/*        <IconButton icon="plus" size={40} onPress={() => this.notesCategory(key)} />  */}
                             </View>              
                         
       
@@ -103,7 +113,7 @@ export default class Home extends React.Component {
          
          
         
-        <ScrollView style={{ position: 'absolute', top: 650 ,width:'100%'}}>
+        <ScrollView style={{ position: 'absolute', top: 450 ,width:'100%'}}>
         <Card>
             <TextInput style={{width:'100%',padding:10}}
   mode='outlined'
